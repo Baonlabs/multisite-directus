@@ -31,29 +31,8 @@ export default function ArticlesPage({ articles = [], categories = [], tags = []
       : plainText;
   };
 
-  // Use real articles if available, otherwise fallback to sample data
-  const displayArticles = articles.length > 0 ? articles : [
-    {
-      id: '1',
-      title: "The Future of Neural Networks",
-      content: "Exploring how neural learning architectures are evolving to solve complex problems in artificial intelligence.",
-      slug: "future-neural-networks",
-      published_at: "2024-12-15",
-      date_created: "2024-12-15",
-      category_id: { id: '1', name: "Machine Learning", slug: "machine-learning" },
-      tags: []
-    },
-    {
-      id: '2',
-      title: "AI in Medical Imaging",
-      content: "How computer vision is revolutionizing medical diagnosis and patient care worldwide.",
-      slug: "ai-medical-imaging",
-      published_at: "2024-12-14",
-      date_created: "2024-12-14",
-      category_id: { id: '2', name: "Computer Vision", slug: "computer-vision" },
-      tags: []
-    }
-  ];
+  // Use only real articles from database
+  const displayArticles = articles || [];
 
   // Use database tags if available, otherwise fallback to hardcoded ones
   const popularTags = tags.length > 0 ? tags.map(tag => `#${tag.name}`) : [
@@ -148,44 +127,51 @@ export default function ArticlesPage({ articles = [], categories = [], tags = []
 
             {/* Articles Grid */}
             <div className="grid md:grid-cols-2 gap-8">
-              {displayArticles.map((article) => (
-                <Link key={article.id} href={`/${article.slug}`}>
-                  <article className="w-full bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 cursor-pointer">
-                    <div className="bg-gradient-to-br from-blue-600 to-purple-600 h-48 relative">
-                      <div className="absolute inset-0 bg-black/30"></div>
-                      <div className="absolute bottom-4 left-4">
-                        <span className="text-blue-300 text-sm font-medium">
-                          {article.category_id.name}
-                        </span>
+              {displayArticles.length > 0 ? (
+                displayArticles.map((article) => (
+                  <Link key={article.id} href={`/${article.slug}`}>
+                    <article className="w-full bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 cursor-pointer">
+                      <div className="bg-gradient-to-br from-blue-600 to-purple-600 h-48 relative">
+                        <div className="absolute inset-0 bg-black/30"></div>
+                        <div className="absolute bottom-4 left-4">
+                          <span className="text-blue-300 text-sm font-medium">
+                            {article.category_id.name}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-3 leading-tight">
-                        {article.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                        {article.excerpt || getExcerpt(article.content)}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                            <span className="text-white text-xs font-bold">
-                              A
-                            </span>
-                          </div>
-                          <div>
-                            <p className="text-white text-sm font-medium">Admin</p>
-                            <p className="text-gray-500 text-xs">
-                              {formatDate(article.published_at)}
-                            </p>
+                      
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-white mb-3 leading-tight">
+                          {article.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                          {article.excerpt || getExcerpt(article.content)}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs font-bold">
+                                A
+                              </span>
+                            </div>
+                            <div>
+                              <p className="text-white text-sm font-medium">Admin</p>
+                              <p className="text-gray-500 text-xs">
+                                {formatDate(article.published_at)}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </article>
-                </Link>
-              ))}
+                    </article>
+                  </Link>
+                ))
+              ) : (
+                <div className="col-span-2 text-center py-12">
+                  <div className="text-gray-400 text-lg mb-2">Chưa có bài viết nào</div>
+                  <p className="text-gray-500 text-sm">Hãy quay lại sau để xem các bài viết mới nhất</p>
+                </div>
+              )}
             </div>
 
             {/* Pagination */}
