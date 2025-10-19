@@ -131,20 +131,36 @@ export default function ArticlesPage({ articles = [], categories = [], tags = []
                 displayArticles.map((article) => (
                   <Link key={article.id} href={`/${article.slug}`}>
                     <article className="w-full bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 cursor-pointer">
-                      <div className="bg-gradient-to-br from-blue-600 to-purple-600 h-48 relative">
-                        <div className="absolute inset-0 bg-black/30"></div>
-                        <div className="absolute bottom-4 left-4">
-                          <span className="text-blue-300 text-sm font-medium">
-                            {article.category_id.name}
-                          </span>
+                      {article.featured_images?.[0]?.images_id ? (
+                        <div className="h-48 relative">
+                          <img
+                            src={article.featured_images[0].images_id.path}
+                            alt={article.featured_images[0].images_id.alt_text || article.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-black/20"></div>
+                          <div className="absolute bottom-4 left-4">
+                            <span className="text-blue-300 text-sm font-medium">
+                              {article.categories.name}
+                            </span>
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <div className="bg-gradient-to-br from-blue-600 to-purple-600 h-48 relative">
+                          <div className="absolute inset-0 bg-black/30"></div>
+                          <div className="absolute bottom-4 left-4">
+                            <span className="text-blue-300 text-sm font-medium">
+                              {article.categories.name}
+                            </span>
+                          </div>
+                        </div>
+                      )}
                       
                       <div className="p-6">
-                        <h3 className="text-xl font-bold text-white mb-3 leading-tight">
+                        <h3 className="text-xl font-bold text-white mb-3 leading-tight line-clamp-2 min-h-[56px]">
                           {article.title}
                         </h3>
-                        <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                        <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3 min-h-[72px]">
                           {article.excerpt || getExcerpt(article.content)}
                         </p>
                         <div className="flex items-center justify-between">
@@ -228,7 +244,7 @@ export default function ArticlesPage({ articles = [], categories = [], tags = []
 
             {/* AI Weekly Digest */}
             <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-6 text-white">
-              <h3 className="text-xl font-bold mb-3">AI Weekly Digest</h3>
+              <h3 className="text-xl font-bold text-white mb-3">AI Weekly Digest</h3>
               <p className="text-blue-100 text-sm mb-4">
                 Get the latest AI breakthroughs and insights delivered weekly.
               </p>

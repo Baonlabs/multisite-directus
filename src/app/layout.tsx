@@ -93,12 +93,12 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en">
+
       <body className="bg-gray-900">
         {header}
         <main className={hostname === process.env.DOMAIN_1 ? "" : "min-h-screen p-6"}>{children}</main>
         {footer}
       </body>
-    </html>
+
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArticleDetailPageProps } from '@/configuration/Shared/schema';
+import ArticleRenderer from '@/configuration/Shared/components/ArticleRenderer' ;
 
 export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
   const formatDate = (dateString: string) => {
@@ -11,6 +12,13 @@ export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
     });
   };
 
+  const featuredImage = article.featured_images?.[0]?.images_id ;
+  // const category = article.categories || {};
+  // const tags = article.tags || [];
+  // console.log(tags);
+  // console.log(category);
+  // console.log(featuredImage);
+  
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Breadcrumb */}
@@ -22,10 +30,10 @@ export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
             </Link>
             <span>/</span>
             <Link 
-              href={`/articles/category/${article.category_id.slug}`}
+              href={`/articles/category/${article.categories.slug}`}
               className="hover:text-white transition-colors text-white"
             >
-              {article.category_id.name}
+              {article.categories.name}
             </Link>
             <span>/</span>
           </nav>
@@ -40,10 +48,10 @@ export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
             <div className="mb-8">
               <div className="flex items-center space-x-4 mb-4">
                 <Link
-                  href={`/articles/category/${article.category_id.slug}`}
+                  href={`/articles/category/${article.categories.slug}`}
                   className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                 >
-                  {article.category_id.name}
+                  {article.categories.name}
                 </Link>
                 <span className="text-gray-400 text-sm">
                   {formatDate(article.published_at)}
@@ -71,22 +79,19 @@ export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
             </div>
 
             {/* Featured Image */}
-            {article.featured_image && (
+            {featuredImage ? (
               <div className="mb-8">
                 <img
-                  src={article.featured_image}
-                  alt={article.title}
+                  src={featuredImage.path || '/default-article.jpg'}
+                  alt={featuredImage.alt_text || article.title}
                   className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg"
                 />
               </div>
-            )}
+            ) : null}
 
             {/* Article Content */}
             <div className="prose prose-lg prose-invert max-w-none">
-              <div 
-                dangerouslySetInnerHTML={{ __html: article.content }}
-                className="text-gray-300 leading-relaxed"
-              />
+              <ArticleRenderer data={article.content} className="prose-headings:text-white prose-p:text-gray-300 prose-a:text-blue-400 prose-strong:text-white prose-code:text-pink-400 prose-pre:bg-gray-800" />
             </div>
 
             {/* Social Sharing */}

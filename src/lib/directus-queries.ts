@@ -10,21 +10,24 @@ export async function getPopularArticles(limit: number = 6) {
         sort: ['-published_at'],
         filter: {
           status: { _eq: 'published' },
-          featured: { _eq: true }
+          type: { _eq: "post" }
         },
         fields: [
           'id', 
           'title', 
           'slug', 
           'content',
+          'excerpt',
           'published_at', 
-          'featured_image',
-          'category_id.id',
-          'category_id.name',
-          'category_id.slug',
+          'categories.id',
+          'categories.name',
+          'categories.slug',
           'author_id.id',
           'author_id.name',
-          'author_id.email'
+          'author_id.email',
+          'featured_images.images_id.id',
+          'featured_images.images_id.path',
+          'featured_images.images_id.alt_text',
         ]
       })
     );
@@ -78,7 +81,7 @@ export async function getArticlesByCategory(categorySlug: string, page: number =
         sort: ['-published_at'],
         filter: {
           status: { _eq: 'published' },
-          category_id: {
+          categories: {
             slug: { _eq: categorySlug }
           }
         },
@@ -87,14 +90,17 @@ export async function getArticlesByCategory(categorySlug: string, page: number =
           'title', 
           'slug', 
           'content',
+          'excerpt',
           'published_at', 
-          'featured_image',
-          'category_id.id',
-          'category_id.name',
-          'category_id.slug',
+          'categories.id',
+          'categories.name',
+          'categories.slug',
           'author_id.id',
           'author_id.name',
-          'author_id.email'
+          'author_id.email',
+          'featured_images.images_id.id',
+          'featured_images.images_id.path',
+          'featured_images.images_id.alt_text',
         ]
       })
     );
@@ -126,17 +132,20 @@ export async function getArticlesByTag(tagSlug: string, page: number = 1, limit:
           'title', 
           'slug', 
           'content',
+          'excerpt',
           'published_at', 
-          'featured_image',
-          'category_id.id',
-          'category_id.name',
-          'category_id.slug',
+          'categories.id',
+          'categories.name',
+          'categories.slug',
           'author_id.id',
           'author_id.name',
           'author_id.email',
           'tags.Tags_id.id',
           'tags.Tags_id.name',
-          'tags.Tags_id.slug'
+          'tags.Tags_id.slug',
+          'featured_images.images_id.id',
+          'featured_images.images_id.path',
+          'featured_images.images_id.alt_text',
         ]
       })
     );
@@ -188,7 +197,7 @@ export async function getRelatedArticles(categoryId: string, currentArticleId: s
         sort: ['-published_at'],
         filter: {
           status: { _eq: 'published' },
-          category_id: { _eq: categoryId },
+          categories: { _eq: categoryId },
           id: { _neq: currentArticleId }
         },
         fields: [
@@ -197,11 +206,15 @@ export async function getRelatedArticles(categoryId: string, currentArticleId: s
           'slug', 
           'excerpt',
           'published_at',
-          'category_id.id',
-          'category_id.name',
-          'category_id.slug',
+          'categories.id',
+          'categories.name',
+          'categories.slug',
           'author_id.id',
-          'author_id.name'
+          'author_id.name',
+          'author_id.email',
+          'featured_images.images_id.id',
+          'featured_images.images_id.path',
+          'featured_images.images_id.alt_text',
         ]
       })
     );
@@ -226,14 +239,18 @@ export async function getPostBySlug(slug: string) {
           'title',
           'slug',
           'content',
+          'excerpt',
           'published_at',
-          'featured_image',
-          'category_id.id',
-          'category_id.name',
-          'category_id.slug',
+          'categories.id',
+          'categories.name',
+          'categories.slug',
           'tags.Tags_id.id',
           'tags.Tags_id.name',
-          'tags.Tags_id.slug'
+          'tags.Tags_id.slug',
+          'featured_images.images_id.id',
+          'featured_images.images_id.path',
+          'featured_images.images_id.alt_text',
+
         ]
       })
     );
@@ -257,14 +274,17 @@ export async function getAllArticles() {
           'title',
           'slug',
           'content',
+          'excerpt',
           'published_at',
-          'featured_image',
-          'category_id.id',
-          'category_id.name',
-          'category_id.slug',
+          'categories.id',
+          'categories.name',
+          'categories.slug',
           'tags.Tags_id.id',
           'tags.Tags_id.name',
-          'tags.Tags_id.slug'
+          'tags.Tags_id.slug',
+          'featured_images.images_id.id',
+          'featured_images.images_id.path',
+          'featured_images.images_id.alt_text',
         ],
         sort: ['-published_at']
       })

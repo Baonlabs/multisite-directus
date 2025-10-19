@@ -3,13 +3,14 @@ import Link from 'next/link';
 import { SimpleArticle, Tag, TagPageProps } from '@/configuration/Shared/schema';
 
 export default function TagPage({ articles, tagInfo, tagSlug }: TagPageProps) {
-  const fallbackArticles = [
+  const fallbackArticles: SimpleArticle[] = [
     {
       id: '1',
       title: "Sample Article with Tag",
       excerpt: "This is a sample article for the tag page.",
       author: "Sample Author",
       date_created: "2024-01-01",
+      published_at: "2024-01-01",
       slug: "sample-article",
       category: { name: 'General', slug: 'general' },
       tags: [{ name: tagSlug, slug: tagSlug }]
@@ -96,25 +97,46 @@ export default function TagPage({ articles, tagInfo, tagSlug }: TagPageProps) {
               {displayArticles.map((article) => (
                 <Link key={article.id} href={`/${article.slug}`}>
                   <article className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-green-500 transition-all duration-300 cursor-pointer">
-                    <div className="bg-gradient-to-br from-green-600 to-teal-600 h-40 sm:h-48 relative">
-                      <div className="absolute inset-0 bg-black/30"></div>
-                      <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
-                        <span className="px-2 sm:px-3 py-1 text-xs rounded-full font-medium bg-white/20 text-white">
-                          #{tagName}
-                        </span>
+                    {article.featured_images?.[0]?.images_id ? (
+                      <div className="h-40 sm:h-48 relative">
+                        <img
+                          src={`/${article.featured_images[0].images_id.path.replace(/^\//, '')}`}
+                          alt={article.featured_images[0].images_id.alt_text || article.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/20"></div>
+                        <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                          <span className="px-2 sm:px-3 py-1 text-xs rounded-full font-medium bg-white/20 text-white">
+                            #{tagName}
+                          </span>
+                        </div>
+                        <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
+                          <span className="text-green-300 text-xs sm:text-sm font-medium">
+                            {article.category?.name || 'General'}
+                          </span>
+                        </div>
                       </div>
-                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
-                        <span className="text-green-300 text-xs sm:text-sm font-medium">
-                          {article.category?.name || 'General'}
-                        </span>
+                    ) : (
+                      <div className="bg-gradient-to-br from-green-600 to-teal-600 h-40 sm:h-48 relative">
+                        <div className="absolute inset-0 bg-black/30"></div>
+                        <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                          <span className="px-2 sm:px-3 py-1 text-xs rounded-full font-medium bg-white/20 text-white">
+                            #{tagName}
+                          </span>
+                        </div>
+                        <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
+                          <span className="text-green-300 text-xs sm:text-sm font-medium">
+                            {article.category?.name || 'General'}
+                          </span>
+                        </div>
                       </div>
-                    </div>
+                    )}
                     
                     <div className="p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 leading-tight">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 leading-tight line-clamp-2 min-h-[56px]">
                         {article.title}
                       </h3>
-                      <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
+                      <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-3 min-h-[72px]">
                         {article.excerpt || "No excerpt available"}
                       </p>
                       
