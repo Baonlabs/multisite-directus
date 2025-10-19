@@ -5,7 +5,7 @@ import ArticlesPage from '@/configuration/TechNova/components/ArticlesPage';
 export default async function Page() {
   const headersList = await headers();
   const hostname = headersList.get('host') || '';
-
+  console.log()
   // Fetch data from database
   const [articles, categories, tags] = await Promise.all([
     getAllArticles(),

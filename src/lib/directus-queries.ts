@@ -31,7 +31,7 @@ export async function getPopularArticles(limit: number = 6) {
         ]
       })
     );
-    console.log('Popular articles:', articles);
+    // console.log('Popular articles:', articles);
     return articles;
   } catch (error) {
     console.error('Error fetching popular articles:', error);

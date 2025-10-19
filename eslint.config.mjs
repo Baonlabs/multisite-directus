@@ -19,6 +19,14 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    rules: {
+      // 👇 Tắt rule cảnh báo dấu nháy đơn trong JSX
+      "react/no-unescaped-entities": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      // (Tùy chọn) Bạn có thể thêm các rule khác ở đây nếu cần:
+      // "no-console": "warn",
+      // "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    },
   },
 ];
 

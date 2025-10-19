@@ -11,7 +11,7 @@ export default async function Page() {
   const hostname = headersList.get("host") || "";
   const config = domains[hostname] || { title: "Website" };
   
-  // console.log("🌐 Hostname:", hostname);
+  console.log("🌐 Hostname 123:", hostname);
   switch (hostname) {
     case process.env.DOMAIN_1:
       return (
