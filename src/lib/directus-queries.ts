@@ -39,21 +39,6 @@ export async function getPopularArticles(limit: number = 6) {
   }
 }
 
-// Fetch categories cho ExploreCategories
-export async function getCategories() {
-  try {
-    const categories = await client.request(
-      readItems('Categories', {
-        sort: ['name'],
-        fields: ['id', 'name', 'description','slug']
-      })
-    );
-    return categories;
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-    return [];
-  }
-}
 
 // Fetch stats cho Stats component
 export async function getStats() {
@@ -178,7 +163,7 @@ export async function getTagBySlug(tagSlug: string) {
     const tags = await client.request(
       readItems('Tags', {
         filter: { slug: { _eq: tagSlug } },
-        fields: ['id', 'name', 'slug']
+        fields: ['id', 'name', 'slug', 'description']
       })
     );
     return tags[0] || null;
@@ -309,5 +294,37 @@ export async function getAllTags() {
   } catch (error) {
     console.error('Error fetching tags:', error);
     return [];
+  }
+}
+// Fetch categories cho ExploreCategories
+export async function getCategories() {
+  try {
+    const categories = await client.request(
+      readItems('Categories', {
+        sort: ['name'],
+        fields: ['id', 'name', 'description','slug']
+      })
+    );
+    return categories;
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+}
+
+export async function getMetadataBySite(hostname: string) {
+  try {
+    const meta = await client.request(
+      readItems('Sites', {
+        filter: {
+          url: { _eq: hostname }
+        },
+        fields: ['id', 'name', 'description','title']
+      })
+    );
+    return meta?.[0] || null;
+  } catch (error) {
+    console.error('Error fetching meta:', error);
+    return null;
   }
 }

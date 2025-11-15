@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { JsonNode } from "@/configuration/Shared/schema";
+import { JsonNode } from "@/configuration/Shared/schema/content";
 import { renderNode } from "@/configuration/Shared/ultility/utils";
 
 export default function ArticleRenderer({ data, className }: { data: JsonNode[] | string; className?: string }) {

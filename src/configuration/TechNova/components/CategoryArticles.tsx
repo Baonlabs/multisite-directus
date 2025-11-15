@@ -1,10 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getPopularArticles } from '@/lib/directus-queries';
+import { getArticlesByCategory, getCategoryBySlug } from '@/lib/directus-queries';
 
-export default async function PopularArticles() {
-  const articles = await getPopularArticles(6);
+export default async function CategoryArticles({ categorySlug, limit = 6 }: { categorySlug: string; limit?: number }) {
+  // Fetch articles by category and optional category info for header
+  const [articles, categoryInfo] = await Promise.all([
+    getArticlesByCategory(categorySlug, 1, limit),
+    getCategoryBySlug(categorySlug)
+  ]);
+
   const displayArticles = Array.isArray(articles) ? articles : [];
 
   const formatDate = (dateString: string) => {
@@ -15,7 +20,7 @@ export default async function PopularArticles() {
       day: 'numeric'
     });
   };
-// viewport
+
   const getExcerpt = (content: string, maxLength: number = 150) => {
     if (!content) return '';
     const plainText = content.replace(/<[^>]*>/g, '');
@@ -32,6 +37,8 @@ export default async function PopularArticles() {
       : trimmed;
   };
 
+  const sanitizeImagePath = (p?: string) => (p || '').replace(/^\/+/, '');
+
   // Guard when there is no data
   if (displayArticles.length === 0) {
     return (
@@ -42,17 +49,15 @@ export default async function PopularArticles() {
             <div className="flex-1 h-[2px] bg-gradient-to-r from-white/20 to-white/10" />
           </div>
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl font-bold text-white">Popular Articles</h2>
+            <h2 className="text-3xl font-bold text-white">{categoryInfo?.name || `Category: ${categorySlug}`}</h2>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium">All</button>
-              <button className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-600">AI</button>
-              <button className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-600">Mobile</button>
-              <button className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-600">Reviews</button>
-              <button className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-600">Gadgets</button>
+              <Link href="/articles">
+                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium">Tất cả bài viết</button>
+              </Link>
             </div>
           </div>
 
-          <div className="text-gray-400">Chưa có bài viết phổ biến</div>
+          <div className="text-gray-400">Chưa có bài viết trong danh mục này</div>
         </div>
       </section>
     );
@@ -61,7 +66,6 @@ export default async function PopularArticles() {
   const hero = displayArticles[0];
   const rightOne = displayArticles[1];
   const rightTwo = displayArticles[2];
-  const bottomCards = displayArticles.slice(3, 6);
 
   return (
     <section className="py-16 bg-gray-900">
@@ -69,13 +73,13 @@ export default async function PopularArticles() {
         {/* Header */}
         {/* Decorative line above header */}
         <div className="flex items-center mb-4">
-            <div className="flex-1 h-[2px] bg-gradient-to-r from-white/20 to-white/10" />
+          <div className="flex-1 h-[2px] bg-gradient-to-r from-white/20 to-white/10" />
         </div>
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-3xl font-bold text-white">Popular Articles</h2>
+          <h2 className="text-3xl font-bold text-white">{categoryInfo?.name || `Category: ${categorySlug}`}</h2>
           <div className="flex gap-2">
             <Link
-              href={`/articles`}
+              href={`/articles/category/${categorySlug}`}
               className="group inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold uppercase tracking-wide text-sm"
             >
               <span>Load more</span>
@@ -99,7 +103,7 @@ export default async function PopularArticles() {
               <div className="rounded-2xl overflow-hidden h-full border border-gray-700 hover:border-blue-500 transition-all duration-300 relative cursor-pointer">
                 {hero.featured_images?.[0]?.images_id?.path ? (
                   <Image
-                    src={`/${hero.featured_images[0].images_id.path.replace(/^\//, '')}`}
+                    src={`/${sanitizeImagePath(hero.featured_images[0].images_id.path)}`}
                     alt={hero.featured_images[0].images_id.alt_text || hero.title}
                     fill
                     sizes="(min-width:1024px) 66vw, 100vw"
@@ -111,16 +115,10 @@ export default async function PopularArticles() {
                 )}
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
-                  {/* Category Tag */}
-                  <div className="mb-4">
-                    <span className="px-3 py-1 bg-yellow-500 text-black text-xs rounded-full font-medium">
-                      ⭐ Editor's Pick
-                    </span>
-                  </div>
                   {/* Category */}
                   <div className="mb-2">
                     <span className="text-blue-300 text-sm font-medium">
-                      {hero.categories?.name || 'General'}
+                      {hero.categories?.name || categoryInfo?.name || 'General'}
                     </span>
                   </div>
                   {/* Title */}
@@ -155,7 +153,7 @@ export default async function PopularArticles() {
                 <div className="rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 relative cursor-pointer">
                   {rightOne.featured_images?.[0]?.images_id?.path ? (
                     <Image
-                      src={`/${rightOne.featured_images[0].images_id.path.replace(/^\//, '')}`}
+                      src={`/${sanitizeImagePath(rightOne.featured_images[0].images_id.path)}`}
                       alt={rightOne.featured_images[0].images_id.alt_text || rightOne.title}
                       fill
                       sizes="(min-width:1024px) 33vw, 100vw"
@@ -169,7 +167,7 @@ export default async function PopularArticles() {
                   <div className="relative z-10 p-6 min-h-[200px] flex flex-col justify-end">
                     <div className="mb-2">
                       <span className="text-blue-300 text-sm font-medium">
-                        {rightOne.categories?.name || 'General'}
+                        {rightOne.categories?.name || categoryInfo?.name || 'General'}
                       </span>
                     </div>
                     <h4 className="text-xl font-bold text-white mb-2 leading-tight line-clamp-2 min-h-[56px]">
@@ -196,7 +194,7 @@ export default async function PopularArticles() {
                 <div className="rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 relative cursor-pointer">
                   {rightTwo.featured_images?.[0]?.images_id?.path ? (
                     <Image
-                      src={`/${rightTwo.featured_images[0].images_id.path.replace(/^\//, '')}`}
+                      src={`/${sanitizeImagePath(rightTwo.featured_images[0].images_id.path)}`}
                       alt={rightTwo.featured_images[0].images_id.alt_text || rightTwo.title}
                       fill
                       sizes="(min-width:1024px) 33vw, 100vw"
@@ -234,14 +232,14 @@ export default async function PopularArticles() {
           </div>
         </div>
 
-        {/* Bottom Row - 3 Equal Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mt-8">
-          {bottomCards.map((article) => (
+        {/* Bottom Row - Equal Cards (kept commented as in original) */}
+        {/* <div className="grid md:grid-cols-3 gap-6 mt-8">
+          {bottomCards.map((article: any) => (
             <Link key={article.id} href={`/${article.slug}`}>
               <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300 cursor-pointer">
                 <div className="mb-3">
                   <span className="px-3 py-1 bg-gray-700 text-gray-300 text-xs rounded-full font-medium">
-                    {article.categories?.name || 'General'}
+                    {article.categories?.name || categoryInfo?.name || 'General'}
                   </span>
                 </div>
                 <h4 className="text-lg font-bold text-white mb-3 leading-tight line-clamp-2 min-h-[56px]">
@@ -261,11 +259,11 @@ export default async function PopularArticles() {
               </div>
             </Link>
           ))}
-        </div>
+        </div> */}
 
-        {/* Load More Button */}
+        {/* View More (kept commented as in original) */}
         {/* <div className="text-center mt-12">
-          <Link href="/articles">
+          <Link href={`/articles/category/${categorySlug}`}>
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-300">
               Load More Articles
             </button>
@@ -275,3 +273,4 @@ export default async function PopularArticles() {
     </section>
   );
 }
+

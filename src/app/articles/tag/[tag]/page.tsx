@@ -3,6 +3,14 @@ import { getArticlesByTag, getTagBySlug } from '@/lib/directus-queries';
 import TagPage from '@/configuration/TechNova/components/TagPage';
 import NotFoundPage from '@/configuration/TechNova/components/NotFoundPage';
 
+export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }) {
+  const { tag } = await params; 
+  const tagInfo = await getTagBySlug(tag);
+  return {
+    title: tagInfo?.name ?? 'Not Found',
+    description: tagInfo?.description ?? 'Demo multi-domain layout - Tag Detail',
+  };
+}
 export default async function Tag({ params }: { params: Promise<{ tag: string }> }) {
   const { tag } = await params;
   const headersList = await headers();

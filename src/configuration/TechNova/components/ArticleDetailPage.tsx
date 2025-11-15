@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArticleDetailPageProps } from '@/configuration/Shared/schema';
+import Image from 'next/image';
+import { ArticleDetailPageProps } from '@/configuration/Shared/schema/props';
 import ArticleRenderer from '@/configuration/Shared/components/ArticleRenderer' ;
 
 export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
@@ -13,11 +14,7 @@ export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
   };
 
   const featuredImage = article.featured_images?.[0]?.images_id ;
-  // const category = article.categories || {};
-  // const tags = article.tags || [];
-  // console.log(tags);
-  // console.log(category);
-  // console.log(featuredImage);
+
   
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -80,11 +77,14 @@ export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
 
             {/* Featured Image */}
             {featuredImage ? (
-              <div className="mb-8">
-                <img
+              <div className="mb-8 relative h-64 sm:h-80 lg:h-96">
+                <Image
                   src={featuredImage.path || '/default-article.jpg'}
                   alt={featuredImage.alt_text || article.title}
-                  className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg"
+                  fill
+                  sizes="(min-width:1024px) 900px, 100vw"
+                  className="object-cover rounded-lg"
+                  unoptimized
                 />
               </div>
             ) : null}

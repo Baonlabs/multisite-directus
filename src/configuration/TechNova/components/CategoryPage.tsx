@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { SimpleArticle, Category, CategoryPageProps } from '@/configuration/Shared/schema';
+import Image from 'next/image';
+import { SimpleArticle } from '@/configuration/Shared/schema/entities';
+import { CategoryPageProps } from '@/configuration/Shared/schema/props';
 
 export default function CategoryPage({ articles, categoryInfo, categorySlug }: CategoryPageProps) {
   const fallbackArticles: SimpleArticle[] = [
@@ -30,26 +32,34 @@ export default function CategoryPage({ articles, categoryInfo, categorySlug }: C
     '#QuantumAI'
   ];
 
-  const trendingTopics = [
-    {
-      id: 1,
-      title: "Latest in " + categoryName,
-      category: "News",
-      readTime: "3 min read"
-    },
-    {
-      id: 2,
-      title: categoryName + " Breakthrough",
-      category: "Research",
-      readTime: "5 min read"
-    },
-    {
-      id: 3,
-      title: "Future of " + categoryName,
-      category: "Analysis",
-      readTime: "4 min read"
-    }
-  ];
+  // const trendingTopics = [
+  //   {
+  //     id: 1,
+  //     title: "Latest in " + categoryName,
+  //     category: "News",
+  //     readTime: "3 min read"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: categoryName + " Breakthrough",
+  //     category: "Research",
+  //     readTime: "5 min read"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Future of " + categoryName,
+  //     category: "Analysis",
+  //     readTime: "4 min read"
+  //   }
+  // ];
+
+  const truncateTitle = (text: string, maxLength: number = 60) => {
+    if (!text) return '';
+    const trimmed = text.trim();
+    return trimmed.length > maxLength
+      ? trimmed.substring(0, maxLength) + '...'
+      : trimmed;
+  };
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -98,10 +108,13 @@ export default function CategoryPage({ articles, categoryInfo, categorySlug }: C
                   <article className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 cursor-pointer">
                     {article.featured_images?.[0]?.images_id ? (
                       <div className="h-48 relative">
-                        <img
+                        <Image
                           src={`/${article.featured_images[0].images_id.path.replace(/^\//, '')}`}
                           alt={article.featured_images[0].images_id.alt_text || article.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(min-width:768px) 50vw, 100vw"
+                          className="object-cover"
+                          unoptimized
                         />
                         <div className="absolute inset-0 bg-black/20"></div>
                         <div className="absolute bottom-4 left-4">
@@ -123,7 +136,7 @@ export default function CategoryPage({ articles, categoryInfo, categorySlug }: C
                     
                     <div className="p-6">
                       <h3 className="text-xl font-bold text-white mb-3 leading-tight line-clamp-2 min-h-[56px]">
-                        {article.title}
+                        {truncateTitle(article.title, 60)}
                       </h3>
                       <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3 min-h-[72px]">
                         {article.excerpt || "No excerpt available"}
@@ -186,16 +199,14 @@ export default function CategoryPage({ articles, categoryInfo, categorySlug }: C
             <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-4">Trending in {categoryName}</h3>
               <div className="space-y-4">
-                {trendingTopics.map((topic) => (
+                {articles.map((topic) => (
                   <div key={topic.id} className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
                       <h4 className="text-white font-medium text-sm leading-tight mb-1">
-                        {topic.title}
+                        {truncateTitle(topic.title as any, 60)}
                       </h4>
-                      <p className="text-gray-400 text-xs">
-                        {topic.category} • {topic.readTime}
-                      </p>
+                      
                     </div>
                   </div>
                 ))}

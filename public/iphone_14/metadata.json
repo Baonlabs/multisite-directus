@@ -1,0 +1,152 @@
+[
+  {
+    "filename": "000001.png",
+    "url": "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111850_iphone-14_1.png",
+    "source_page": "https://support.apple.com/en-us/111850",
+    "mime": "image/png",
+    "width": 916,
+    "height": 646,
+    "query": "iphone 14",
+    "fetched_at": "2025-10-27T12:05:59.999840Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "iPhone 14 - Tech Specs - Apple Support",
+      "htmlTitle": "<b>iPhone 14</b> - Tech Specs - Apple Support",
+      "link": "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111850_iphone-14_1.png",
+      "displayLink": "support.apple.com",
+      "snippet": "iPhone 14 - Tech Specs - Apple Support",
+      "htmlSnippet": "<b>iPhone 14</b> - Tech Specs - Apple Support",
+      "mime": "image/png",
+      "fileFormat": "image/png",
+      "image": {
+        "contextLink": "https://support.apple.com/en-us/111850",
+        "height": 646,
+        "width": 916,
+        "byteSize": 405956,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1FiEl4AwZNuPuikVkTpvoQAQziWFD2GagXLTooZlYmvnXe3xKiJo6tw&s",
+        "thumbnailHeight": 104,
+        "thumbnailWidth": 147
+      }
+    }
+  },
+  {
+    "filename": "000002.jpg",
+    "url": "https://www.apple.com/newsroom/images/product/iphone/geo/Apple-iPhone-14-iPhone-14-Plus-hero-220907-geo_Full-Bleed-Image.jpg.large.jpg",
+    "source_page": "https://www.apple.com/ca/newsroom/2022/09/apple-introduces-iphone-14-and-iphone-14-plus/",
+    "mime": "image/jpeg",
+    "width": 1440,
+    "height": 810,
+    "query": "iphone 14",
+    "fetched_at": "2025-10-27T12:06:02.286083Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "Apple introduces iPhone 14 and iPhone 14 Plus - Apple (CA)",
+      "htmlTitle": "Apple introduces <b>iPhone 14</b> and <b>iPhone 14</b> Plus - Apple (CA)",
+      "link": "https://www.apple.com/newsroom/images/product/iphone/geo/Apple-iPhone-14-iPhone-14-Plus-hero-220907-geo_Full-Bleed-Image.jpg.large.jpg",
+      "displayLink": "www.apple.com",
+      "snippet": "Apple introduces iPhone 14 and iPhone 14 Plus - Apple (CA)",
+      "htmlSnippet": "Apple introduces <b>iPhone 14</b> and <b>iPhone 14</b> Plus - Apple (CA)",
+      "mime": "image/jpeg",
+      "fileFormat": "image/jpeg",
+      "image": {
+        "contextLink": "https://www.apple.com/ca/newsroom/2022/09/apple-introduces-iphone-14-and-iphone-14-plus/",
+        "height": 810,
+        "width": 1440,
+        "byteSize": 95416,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR_BR7rnNwzHuxsVC3Zvb7S0v-LvPRZ2B-bGHfAMXSnwO2Ik5YlsiQh7M&s",
+        "thumbnailHeight": 84,
+        "thumbnailWidth": 150
+      }
+    }
+  },
+  {
+    "filename": "000003.jpeg",
+    "url": "https://techcrunch.com/wp-content/uploads/2022/09/Apple-iphone-14-Pro-review-1.jpeg",
+    "source_page": "https://techcrunch.com/2022/09/14/review-apple-iphone-14-pro/",
+    "mime": "image/jpeg",
+    "width": 4032,
+    "height": 3024,
+    "query": "iphone 14",
+    "fetched_at": "2025-10-27T12:06:04.700715Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "Review: Apple's iPhone 14 and iPhone 14 Pro, The big lean in",
+      "htmlTitle": "Review: Apple&#39;s <b>iPhone 14</b> and <b>iPhone 14</b> Pro, The big lean in",
+      "link": "https://techcrunch.com/wp-content/uploads/2022/09/Apple-iphone-14-Pro-review-1.jpeg",
+      "displayLink": "techcrunch.com",
+      "snippet": "Review: Apple's iPhone 14 and iPhone 14 Pro, The big lean in",
+      "htmlSnippet": "Review: Apple&#39;s <b>iPhone 14</b> and <b>iPhone 14</b> Pro, The big lean in",
+      "mime": "image/jpeg",
+      "fileFormat": "image/jpeg",
+      "image": {
+        "contextLink": "https://techcrunch.com/2022/09/14/review-apple-iphone-14-pro/",
+        "height": 3024,
+        "width": 4032,
+        "byteSize": 3692204,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr7z6as7otsPd8PdnwRwo3yJLh0rXgmuIOqYvgIBqm4iWjt8cuJ1oo&s",
+        "thumbnailHeight": 113,
+        "thumbnailWidth": 150
+      }
+    }
+  },
+  {
+    "filename": "000004.jpg",
+    "url": "https://www.apple.com/newsroom/images/product/iphone/geo/Apple-iPhone-14-iPhone-14-Plus-hero-220907-geo.jpg.og.jpg?202508281636",
+    "source_page": "https://www.apple.com/ca/newsroom/2022/09/apple-introduces-iphone-14-and-iphone-14-plus/",
+    "mime": "image/jpeg",
+    "width": 1200,
+    "height": 630,
+    "query": "iphone 14",
+    "fetched_at": "2025-10-27T12:06:07.025568Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "Apple introduces iPhone 14 and iPhone 14 Plus - Apple (CA)",
+      "htmlTitle": "Apple introduces <b>iPhone 14</b> and <b>iPhone 14</b> Plus - Apple (CA)",
+      "link": "https://www.apple.com/newsroom/images/product/iphone/geo/Apple-iPhone-14-iPhone-14-Plus-hero-220907-geo.jpg.og.jpg?202508281636",
+      "displayLink": "www.apple.com",
+      "snippet": "Apple introduces iPhone 14 and iPhone 14 Plus - Apple (CA)",
+      "htmlSnippet": "Apple introduces <b>iPhone 14</b> and <b>iPhone 14</b> Plus - Apple (CA)",
+      "mime": "image/jpeg",
+      "fileFormat": "image/jpeg",
+      "image": {
+        "contextLink": "https://www.apple.com/ca/newsroom/2022/09/apple-introduces-iphone-14-and-iphone-14-plus/",
+        "height": 630,
+        "width": 1200,
+        "byteSize": 69327,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeynkJt_lAXWP5yqzyoIKjqD77XcLvPLlh_CFPzrp4KZzkOMH8VUN9_g&s",
+        "thumbnailHeight": 79,
+        "thumbnailWidth": 150
+      }
+    }
+  },
+  {
+    "filename": "000005.jpg",
+    "url": "https://m.media-amazon.com/images/I/618Bb+QzCmL.jpg",
+    "source_page": "https://www.amazon.com/Apple-iPhone-128GB-Starlight-Renewed/dp/B0BN72C4GY",
+    "mime": "image/jpeg",
+    "width": 2560,
+    "height": 2560,
+    "query": "iphone 14",
+    "fetched_at": "2025-10-27T12:06:09.209689Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "Amazon.com: Apple iPhone 14, 128GB, Starlight for AT&T (Renewed ...",
+      "htmlTitle": "Amazon.com: Apple <b>iPhone 14</b>, 128GB, Starlight for AT&amp;T (Renewed ...",
+      "link": "https://m.media-amazon.com/images/I/618Bb+QzCmL.jpg",
+      "displayLink": "www.amazon.com",
+      "snippet": "Amazon.com: Apple iPhone 14, 128GB, Starlight for AT&T (Renewed ...",
+      "htmlSnippet": "Amazon.com: Apple <b>iPhone 14</b>, 128GB, Starlight for AT&amp;T (Renewed ...",
+      "mime": "image/jpeg",
+      "fileFormat": "image/jpeg",
+      "image": {
+        "contextLink": "https://www.amazon.com/Apple-iPhone-128GB-Starlight-Renewed/dp/B0BN72C4GY",
+        "height": 2560,
+        "width": 2560,
+        "byteSize": 108516,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOUrxrjgv5V0uXKpXYIbXnoecPGRjvSK4sGBmBlNncf4FHlwob2j47H_Y&s",
+        "thumbnailHeight": 150,
+        "thumbnailWidth": 150
+      }
+    }
+  }
+]

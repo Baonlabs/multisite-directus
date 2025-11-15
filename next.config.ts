@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Cho phép nhiều origin trong môi trường development truy cập tài nguyên /_next/*
+  allowedDevOrigins: [
+    "http://localhost:3000",
+    "http://bao1.test:3000",
+    "http://bao2.test:3000",
+  ],
   // Cấu hình cho development với multiple domains
   async rewrites() {
     return {

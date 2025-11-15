@@ -1,5 +1,5 @@
 import React from "react";
-import { JsonNode } from "@/configuration/Shared/schema";
+import { JsonNode } from "@/configuration/Shared/schema/content";
 
 export function mapProps(props: Record<string, any> = {}): Record<string, any> {
   const mapped: Record<string, any> = { ...props };
@@ -14,7 +14,7 @@ const allowedTags = new Set(["h1", "div", "section", "h2", "p"]);
 
 export function renderNode(node: JsonNode, key?: React.Key): React.ReactNode {
   const tag = (node.tag || "div").toLowerCase();
-  const className = node.className || "";
+  // const className = node.className || "";
 
   
   if (!allowedTags.has(tag)) {
@@ -42,7 +42,6 @@ export function renderNode(node: JsonNode, key?: React.Key): React.ReactNode {
 
   // If children is a string, render as HTML content
   if (typeof node.children === "string") {
-    console.log(123)
     return React.createElement(tag, { ...props, key, dangerouslySetInnerHTML: { __html: node.children } });
   }
 

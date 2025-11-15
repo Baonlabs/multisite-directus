@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { Article, ArticlesPageProps } from '@/configuration/Shared/schema';
+import Image from 'next/image';
+import { ArticlesPageProps } from '@/configuration/Shared/schema/props';
 
 export default function ArticlesPage({ articles = [], categories = [], tags = [] }: ArticlesPageProps) {
   // Use database categories if available, otherwise fallback to hardcoded ones
@@ -29,6 +30,14 @@ export default function ArticlesPage({ articles = [], categories = [], tags = []
     return plainText.length > maxLength 
       ? plainText.substring(0, maxLength) + '...'
       : plainText;
+  };
+
+  const truncateTitle = (text: string, maxLength: number = 60) => {
+    if (!text) return '';
+    const trimmed = text.trim();
+    return trimmed.length > maxLength
+      ? trimmed.substring(0, maxLength) + '...'
+      : trimmed;
   };
 
   // Use only real articles from database
@@ -133,10 +142,13 @@ export default function ArticlesPage({ articles = [], categories = [], tags = []
                     <article className="w-full bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 cursor-pointer">
                       {article.featured_images?.[0]?.images_id ? (
                         <div className="h-48 relative">
-                          <img
+                          <Image
                             src={article.featured_images[0].images_id.path}
                             alt={article.featured_images[0].images_id.alt_text || article.title}
-                            className="w-full h-full object-cover"
+                            fill
+                            sizes="(min-width:768px) 50vw, 100vw"
+                            className="object-cover"
+                            unoptimized
                           />
                           <div className="absolute inset-0 bg-black/20"></div>
                           <div className="absolute bottom-4 left-4">
@@ -158,7 +170,7 @@ export default function ArticlesPage({ articles = [], categories = [], tags = []
                       
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-white mb-3 leading-tight line-clamp-2 min-h-[56px]">
-                          {article.title}
+                          {truncateTitle(article.title, 60)}
                         </h3>
                         <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3 min-h-[72px]">
                           {article.excerpt || getExcerpt(article.content)}
@@ -231,7 +243,7 @@ export default function ArticlesPage({ articles = [], categories = [], tags = []
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
                       <h4 className="text-white font-medium text-sm leading-tight mb-1">
-                        {topic.title}
+                        {truncateTitle(topic.title, 60)}
                       </h4>
                       <p className="text-gray-400 text-xs">
                         {topic.category} • {topic.readTime}

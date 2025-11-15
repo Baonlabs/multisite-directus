@@ -3,6 +3,14 @@ import { getArticlesByCategory, getCategoryBySlug } from '@/lib/directus-queries
 import CategoryPage from '@/configuration/TechNova/components/CategoryPage';
 import NotFoundPage from '@/configuration/TechNova/components/NotFoundPage';
 
+export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
+  const { category } = await params; 
+  const categoryInfo = await getCategoryBySlug(category);
+  return {
+    title: categoryInfo?.name ?? 'Not Found',
+    description: categoryInfo?.description ?? 'Demo multi-domain layout - Category Detail',
+  };
+}
 export default async function Category({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params;
   const headersList = await headers();

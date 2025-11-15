@@ -1,12 +1,28 @@
 import "./globals.css";
 import { headers } from "next/headers";
+import type { Metadata } from "next";
 import { domains } from "@/app/domains";
 import Header from "@/configuration/TechNova/components/Header";
+import { getMetadataBySite } from "@/lib/directus-queries";
+import { getCategories, getAllTags } from "@/lib/directus-queries";
 
-export const metadata = {
-  title: "Multi Website",
-  description: "Demo multi-domain layout",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const hostname = headersList.get("host") || "";
+  const siteMeta = await getMetadataBySite(hostname);
+  // console.log("🌐 Site Meta----layout:", siteMeta);
+  const titleFromSite = siteMeta && typeof siteMeta === "object" ? (siteMeta as any).title : undefined;
+  const descFromSite = siteMeta && typeof siteMeta === "object" ? (siteMeta as any).description : undefined;
+
+  const title = titleFromSite 
+  const description = descFromSite;
+
+  return {
+    title,
+    description,
+    robots: { index: true, follow: true },
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -18,11 +34,17 @@ export default async function RootLayout({
   const config = domains[hostname] || { title: "Website", theme: "default" };
 
   let header, footer;
-  console.log("🌐 Hostname----layout:", hostname);
+  // console.log("🌐 Hostname----layout:", hostname);
 
+  const domain1 = (process.env.DOMAIN_1 || "").trim().toLowerCase();
+  const domain2 = (process.env.DOMAIN_2 || "").trim().toLowerCase();
   switch (hostname) {
-    case process.env.DOMAIN_1:
-      header = <Header />; // Sử dụng TechNova Header component
+    case domain1:
+      const [categories, tags] = await Promise.all([
+        getCategories(),
+        getAllTags()
+      ]); 
+      header = <Header cate={categories as any} tag={tags as any} />; 
       footer = (
         <footer className="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
           <div className="max-w-7xl mx-auto px-6">
@@ -65,7 +87,7 @@ export default async function RootLayout({
       );
       break;
 
-    case process.env.DOMAIN_2:
+    case domain2:
       header = (
         <header className="bg-green-600 text-white p-4">
           <h1>{config.title} - Domain 2</h1>
@@ -93,7 +115,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html>
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-gray-900">
             {header}
             <main className={hostname === process.env.DOMAIN_1 ? "" : "min-h-screen p-6"}>{children}</main>

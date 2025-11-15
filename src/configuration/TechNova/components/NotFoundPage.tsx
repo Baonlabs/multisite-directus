@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {NotFoundPageProps} from '@/configuration/Shared/schema';
+import { NotFoundPageProps } from '@/configuration/Shared/schema/ui';
 
 
 export default function NotFoundPage({ type, slug }: NotFoundPageProps) {

@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { SimpleArticle, Tag, TagPageProps } from '@/configuration/Shared/schema';
+import Image from 'next/image';
+import { SimpleArticle } from '@/configuration/Shared/schema/entities';
+import { TagPageProps } from '@/configuration/Shared/schema/props';
 
 export default function TagPage({ articles, tagInfo, tagSlug }: TagPageProps) {
   const fallbackArticles: SimpleArticle[] = [
@@ -52,6 +54,14 @@ export default function TagPage({ articles, tagInfo, tagSlug }: TagPageProps) {
     }
   ];
 
+  const truncateTitle = (text: string, maxLength: number = 60) => {
+    if (!text) return '';
+    const trimmed = text.trim();
+    return trimmed.length > maxLength
+      ? trimmed.substring(0, maxLength) + '...'
+      : trimmed;
+  };
+
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Hero Section */}
@@ -99,10 +109,13 @@ export default function TagPage({ articles, tagInfo, tagSlug }: TagPageProps) {
                   <article className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-green-500 transition-all duration-300 cursor-pointer">
                     {article.featured_images?.[0]?.images_id ? (
                       <div className="h-40 sm:h-48 relative">
-                        <img
+                        <Image
                           src={`/${article.featured_images[0].images_id.path.replace(/^\//, '')}`}
                           alt={article.featured_images[0].images_id.alt_text || article.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(min-width:768px) 50vw, 100vw"
+                          className="object-cover"
+                          unoptimized
                         />
                         <div className="absolute inset-0 bg-black/20"></div>
                         <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
@@ -134,7 +147,7 @@ export default function TagPage({ articles, tagInfo, tagSlug }: TagPageProps) {
                     
                     <div className="p-4 sm:p-6">
                       <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 leading-tight line-clamp-2 min-h-[56px]">
-                        {article.title}
+                        {truncateTitle(article.title, 60)}
                       </h3>
                       <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-3 min-h-[72px]">
                         {article.excerpt || "No excerpt available"}
@@ -217,7 +230,7 @@ export default function TagPage({ articles, tagInfo, tagSlug }: TagPageProps) {
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
                       <h4 className="text-white font-medium text-sm leading-tight mb-1">
-                        {topic.title}
+                        {truncateTitle(topic.title, 60)}
                       </h4>
                       <p className="text-gray-400 text-xs">
                         {topic.category} • {topic.readTime}

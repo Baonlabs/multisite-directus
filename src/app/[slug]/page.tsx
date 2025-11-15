@@ -3,13 +3,21 @@ import { headers } from 'next/headers';
 import ArticleDetailPage from '@/configuration/TechNova/components/ArticleDetailPage';
 import { getPostBySlug } from '@/lib/directus-queries';
 
+export async function generateMetadata({ params }: { params: Promise<{ post: string }> }) {
+  const { post } = await params; 
+  const postInfo = await getPostBySlug(post);
+  return {
+    title: postInfo?.title ?? 'Not Found',
+    description: postInfo?.excerpt ?? 'Demo multi-domain layout - Article Detail',
+  };
+}
+
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const headersList = await headers();
   const hostname = headersList.get('host') || '';
   
   const post = await getPostBySlug(slug);
-  
   if (!post) {
     notFound();
   }

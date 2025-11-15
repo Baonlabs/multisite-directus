@@ -1,0 +1,152 @@
+[
+  {
+    "filename": "000001.jpg",
+    "url": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iphone13_hero_09142021_inline.jpg.large.jpg",
+    "source_page": "https://www.apple.com/newsroom/2021/09/apple-introduces-iphone-13-and-iphone-13-mini/",
+    "mime": "image/jpeg",
+    "width": 653,
+    "height": 914,
+    "query": "iphone 13",
+    "fetched_at": "2025-10-27T11:44:38.024366Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "Apple introduces iPhone 13 and iPhone 13 mini - Apple",
+      "htmlTitle": "Apple introduces <b>iPhone 13</b> and <b>iPhone 13</b> mini - Apple",
+      "link": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iphone13_hero_09142021_inline.jpg.large.jpg",
+      "displayLink": "www.apple.com",
+      "snippet": "Apple introduces iPhone 13 and iPhone 13 mini - Apple",
+      "htmlSnippet": "Apple introduces <b>iPhone 13</b> and <b>iPhone 13</b> mini - Apple",
+      "mime": "image/jpeg",
+      "fileFormat": "image/jpeg",
+      "image": {
+        "contextLink": "https://www.apple.com/newsroom/2021/09/apple-introduces-iphone-13-and-iphone-13-mini/",
+        "height": 914,
+        "width": 653,
+        "byteSize": 47432,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSotiGQ913XZDS2lpv-9we9f9pLi5LyH7pZG80xRKckq88roO5FyDECfhE&s",
+        "thumbnailHeight": 147,
+        "thumbnailWidth": 105
+      }
+    }
+  },
+  {
+    "filename": "000002.png",
+    "url": "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111872_iphone13-colors-480.png",
+    "source_page": "https://support.apple.com/en-us/111872",
+    "mime": "image/png",
+    "width": 472,
+    "height": 288,
+    "query": "iphone 13",
+    "fetched_at": "2025-10-27T11:44:40.360664Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "iPhone 13 - Tech Specs - Apple Support",
+      "htmlTitle": "<b>iPhone 13</b> - Tech Specs - Apple Support",
+      "link": "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111872_iphone13-colors-480.png",
+      "displayLink": "support.apple.com",
+      "snippet": "iPhone 13 - Tech Specs - Apple Support",
+      "htmlSnippet": "<b>iPhone 13</b> - Tech Specs - Apple Support",
+      "mime": "image/png",
+      "fileFormat": "image/png",
+      "image": {
+        "contextLink": "https://support.apple.com/en-us/111872",
+        "height": 288,
+        "width": 472,
+        "byteSize": 129605,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3NIwR0L_EvNBvSTnXb2c53io2KffSjKyVIIi8DzIQ-iVgAukCxkRZUA&s",
+        "thumbnailHeight": 79,
+        "thumbnailWidth": 129
+      }
+    }
+  },
+  {
+    "filename": "000003.jpg",
+    "url": "https://www.apple.com/newsroom/images/product/iphone/geo/Apple_iphone13_hero_geo_09142021_inline.jpg.large.jpg",
+    "source_page": "https://www.apple.com/ro/newsroom/2021/09/apple-introduces-iphone-13-and-iphone-13-mini/",
+    "mime": "image/jpeg",
+    "width": 653,
+    "height": 914,
+    "query": "iphone 13",
+    "fetched_at": "2025-10-27T11:44:43.152429Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "Apple introduces iPhone 13 and iPhone 13 mini - Apple (RO)",
+      "htmlTitle": "Apple introduces <b>iPhone 13</b> and <b>iPhone 13</b> mini - Apple (RO)",
+      "link": "https://www.apple.com/newsroom/images/product/iphone/geo/Apple_iphone13_hero_geo_09142021_inline.jpg.large.jpg",
+      "displayLink": "www.apple.com",
+      "snippet": "Apple introduces iPhone 13 and iPhone 13 mini - Apple (RO)",
+      "htmlSnippet": "Apple introduces <b>iPhone 13</b> and <b>iPhone 13</b> mini - Apple (RO)",
+      "mime": "image/jpeg",
+      "fileFormat": "image/jpeg",
+      "image": {
+        "contextLink": "https://www.apple.com/ro/newsroom/2021/09/apple-introduces-iphone-13-and-iphone-13-mini/",
+        "height": 914,
+        "width": 653,
+        "byteSize": 47597,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVTihfVbzjYEbnmrLzy_MmTGzOT7LkeUvXR1jyj3aNgmtRvI-JKt17aCQ&s",
+        "thumbnailHeight": 147,
+        "thumbnailWidth": 105
+      }
+    }
+  },
+  {
+    "filename": "000004.jpg",
+    "url": "https://m.media-amazon.com/images/I/516QZcrv+dL.jpg",
+    "source_page": "https://www.amazon.com/Apple-iPhone-13-128GB-Pink/dp/B09LNP1ZHT",
+    "mime": "image/jpeg",
+    "width": 1000,
+    "height": 1000,
+    "query": "iphone 13",
+    "fetched_at": "2025-10-27T11:44:45.275712Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "Amazon.com: Apple iPhone 13, 128GB, Pink - Unlocked (Renewed ...",
+      "htmlTitle": "Amazon.com: Apple <b>iPhone 13</b>, 128GB, Pink - Unlocked (Renewed ...",
+      "link": "https://m.media-amazon.com/images/I/516QZcrv+dL.jpg",
+      "displayLink": "www.amazon.com",
+      "snippet": "Amazon.com: Apple iPhone 13, 128GB, Pink - Unlocked (Renewed ...",
+      "htmlSnippet": "Amazon.com: Apple <b>iPhone 13</b>, 128GB, Pink - Unlocked (Renewed ...",
+      "mime": "image/jpeg",
+      "fileFormat": "image/jpeg",
+      "image": {
+        "contextLink": "https://www.amazon.com/Apple-iPhone-13-128GB-Pink/dp/B09LNP1ZHT",
+        "height": 1000,
+        "width": 1000,
+        "byteSize": 34627,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ4UijY2MCUEjbOSH52yD0lUGwFaDCZU6aoDR0bNEJG826neqX_h83k8E&s",
+        "thumbnailHeight": 149,
+        "thumbnailWidth": 149
+      }
+    }
+  },
+  {
+    "filename": "000005.jpg",
+    "url": "https://media.wired.com/photos/61439ca1ea5305148f36968a/3:2/w_2560%2Cc_limit/Gear-iphone13_sierra_blue__2bovafkl4yaa_large_2x.jpg",
+    "source_page": "https://www.wired.com/story/apple-iphone-13-deals/",
+    "mime": "image/jpeg",
+    "width": 2400,
+    "height": 1600,
+    "query": "iphone 13",
+    "fetched_at": "2025-10-27T11:44:47.445920Z",
+    "raw_item": {
+      "kind": "customsearch#result",
+      "title": "Which iPhone 13 Should You Get? (And the Best Deals) | WIRED",
+      "htmlTitle": "Which <b>iPhone 13</b> Should You Get? (And the Best Deals) | WIRED",
+      "link": "https://media.wired.com/photos/61439ca1ea5305148f36968a/3:2/w_2560%2Cc_limit/Gear-iphone13_sierra_blue__2bovafkl4yaa_large_2x.jpg",
+      "displayLink": "www.wired.com",
+      "snippet": "Which iPhone 13 Should You Get? (And the Best Deals) | WIRED",
+      "htmlSnippet": "Which <b>iPhone 13</b> Should You Get? (And the Best Deals) | WIRED",
+      "mime": "image/jpeg",
+      "fileFormat": "image/jpeg",
+      "image": {
+        "contextLink": "https://www.wired.com/story/apple-iphone-13-deals/",
+        "height": 1600,
+        "width": 2400,
+        "byteSize": 58759,
+        "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUs3ISPo5YA6IT1KUyAR78hoi3_D0EV4vcFecgX4RlAH3POyBNGxn&s",
+        "thumbnailHeight": 100,
+        "thumbnailWidth": 150
+      }
+    }
+  }
+]

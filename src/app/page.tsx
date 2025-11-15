@@ -1,10 +1,12 @@
 import { domains } from "@/app/domains";
 import { headers } from "next/headers";
 import Hero from "@/configuration/TechNova/components/Hero";
-import Stats from "@/configuration/TechNova/components/Stats";
+// import Stats from "@/configuration/TechNova/components/Stats";
 import PopularArticles from "@/configuration/TechNova/components/PopularArticles";
 import ExploreCategories from "@/configuration/TechNova/components/ExploreCategories";
 import JoinCommunity from "@/configuration/TechNova/components/JoinCommunity";
+import CategoryArticles from "@/configuration/TechNova/components/CategoryArticles";
+// import { getCategories, getAllTags } from "@/lib/directus-queries";
 
 export default async function Page() {
   const headersList = await headers();
@@ -17,8 +19,10 @@ export default async function Page() {
       return (
         <div className="bg-gray-900 min-h-screen">
           <Hero />
-          <Stats />
           <PopularArticles />
+          <CategoryArticles categorySlug="tech" />
+          <CategoryArticles categorySlug="phone" />
+          <CategoryArticles categorySlug="tech" />
           <ExploreCategories />
           <JoinCommunity />
         </div>

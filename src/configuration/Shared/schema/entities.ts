@@ -1,21 +1,19 @@
-import { BaseEntity, DescriptionField, ContentFields, TimestampFields, AuthorFields, ContactFields, MediaFields } from "./base";
-
 // ========== COMPOSED INTERFACES ==========
 
-// Featured image interface - composed from base interfaces
-export interface FeaturedImage extends BaseEntity, DescriptionField {
-  path: string;
-  alt_text?: string;
+// Category interface
+export interface Category {
+  id: string;
+  slug: string;
+  name: string;
+  description?: string;
 }
 
-// Category interface - composed from base interfaces
-export interface Category extends BaseEntity, DescriptionField {
+// Tag interface
+export interface Tag {
+  id: string;
+  slug: string;
   name: string;
-}
-
-// Tag interface - composed from base interfaces
-export interface Tag extends BaseEntity, DescriptionField {
-  name: string;
+  description?: string;
 }
 
 // Simple category reference (for backward compatibility)
@@ -35,8 +33,23 @@ export interface DirectusTagWrapper {
   Tags_id: Tag;
 }
 
-// Core Article interface - composed from multiple base interfaces
-export interface Article extends BaseEntity, ContentFields, TimestampFields, AuthorFields, MediaFields {
+// Core Article interface (runtime shape used by components)
+export interface Article {
+  id: string;
+  slug: string;
+  title: string;
+  content: string;
+  excerpt?: string;
+  published_at: string;
+  date_created: string;
+  author?: string;
+  featured_images?: Array<{
+    images_id: {
+      id: string;
+      path: string;
+      alt_text?: string;
+    };
+  }>;
   categories: Category;
   tags: Array<DirectusTagWrapper>;
   // Additional fields for compatibility with different components
@@ -44,14 +57,32 @@ export interface Article extends BaseEntity, ContentFields, TimestampFields, Aut
 }
 
 // Simplified Article interface for components that use simpler tag structure
-export interface SimpleArticle extends BaseEntity, TimestampFields, AuthorFields, MediaFields {
+export interface SimpleArticle {
+  id: string;
+  slug: string;
   title: string;
   excerpt?: string;
+  published_at: string;
+  date_created: string;
+  author?: string;
+  featured_images?: Array<{
+    images_id: {
+      id: string;
+      path: string;
+      alt_text?: string;
+    };
+  }>;
   category?: SimpleCategoryRef;
   tags?: Array<SimpleTagRef>;
 }
 
-// Author interface (for future use) - composed from base interfaces
-export interface Author extends BaseEntity, ContactFields {
+// Author interface (reserved for future use)
+export interface Author {
+  id: string;
+  slug: string;
   name: string;
+  email?: string;
+  bio?: string;
+  avatar?: string;
+  description?: string;
 }
